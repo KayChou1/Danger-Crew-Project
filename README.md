@@ -1,6 +1,6 @@
 # Danger Crew Project
 
-### This is my front end peoject focusing on JavaScript logic and interactions between objects. 
+### This is my front end project focusing on JavaScript logic and interactions between objects. 
 ### I am creating my project based on [TheDangerCrew](https://TheDangerCrew.com/)
 
 ### Checklist:
