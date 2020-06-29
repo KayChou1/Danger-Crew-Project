@@ -7,6 +7,6 @@
 * [✔] Create an index.html
 * [✔] Create an style.css
 * [✔] Create an scripts.js
-* []  Create a Git repo
+* [✔]  Create a Git repo
 * []  Create full checklist
-* []
+
