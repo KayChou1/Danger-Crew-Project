@@ -1,0 +1,14 @@
+html, #app-root {
+    height: 100%; 
+}
+  
+body {
+    height: 100%;
+   background-color: chartreuse;
+    overflow: hidden; 
+}
+  
+#myCanvas{
+    background-color: red;
+    
+}

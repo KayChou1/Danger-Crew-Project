@@ -7,6 +7,36 @@
 * [✔] Create an index.html
 * [✔] Create an style.css
 * [✔] Create an scripts.js
-* [✔]  Create a Git repo
-* []  Create full checklist
+* [✔] Create a Git repo
+
+* []  Create characters
+    * [] Self character
+        * [] Characteristics 
+        * [] Movement 
+            * [] Up, Right, Left, Down
+            * [] Enter bulidings
+        * [] Ability to interact with enemies
+            * [] Press Space to interact with enemies
+    
+    * [] Enemies 
+        * [] Respond to player character
+
+* [] Create battle scene
+    * [] Rock, Paper, Scissors
+    * [] Exit option
+
+* []  Create Outdoor area
+    * [] Trees
+    * [] Water fountain
+    * [] Outdoor Ground tiling 
+    * [] Exterior Bulidings 
+        * [] Doors to the bulidings 
+     
+* []  Create interior of Bulidings
+    * [] Desks 
+    * [] Create/Choosing indoor flooring
+
+
+
+
 
