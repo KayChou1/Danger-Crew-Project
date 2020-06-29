@@ -12,14 +12,15 @@
 * []  Create characters
     * [] Self character
         * [] Characteristics 
-        * [] Movement 
-            * [] Up, Right, Left, Down
+        * [✔] Movement 
+            * [✔] Up, Right, Left, Down
             * [] Enter bulidings
         * [] Ability to interact with enemies
             * [] Press Space to interact with enemies
     
     * [] Enemies 
-        * [] Respond to player character
+        * [] Character cannot walk over enemies 
+        * [] Respond to player character when enemies and player touch 
 
 * [] Create battle scene
     * [] Rock, Paper, Scissors
