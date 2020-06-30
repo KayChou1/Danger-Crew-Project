@@ -1,20 +1,23 @@
 // get access to the canvas, specfically the "context"
+//import * as  url from "./Assets/8BitKirby"
 let canvas = document.getElementById('myCanvas');
-let ctx = canvas.getContext("2d")
+let ctx = canvas.getContext("2d");
+let img = document.getElementById("Kirby");
+
 
 // define a enemy char
-let enemy1 = {Height: 10,Width: 10,X: 790,Y:  390,}
-let enemy2 = {Height: 10,Width: 10,X: 0,Y:  0,}
-let enemy3 = {Height: 10,Width: 10,X: 0,Y:  390,}
-let enemy4 = {Height: 10,Width: 10,X: 790,Y:  0,}
+let enemy1 = {name:"enemy1",Height: 30,Width: 30,X: 770,Y:  370,}
+let enemy2 = {name:"enemy2",Height: 30,Width: 30,X: 0,Y:  0,}
+let enemy3 = {name:"enemy3",Height: 30,Width: 30,X: 0,Y:  370,}
+let enemy4 = {name:"enemy4",Height: 30,Width: 30,X: 770,Y:  0,}
 
 let eneimies = [enemy1, enemy2, enemy3, enemy4];
 
 // define a char
-let charHeight = 10;
-let charWidth = 10;
-let charX = canvas.width/2;
-let charY = canvas.height/2;
+
+let char = {name:"char",Height: 30, Width: 30, X: canvas.width/2 , Y: canvas.height/2 }
+
+
 // declare that buttons ARENT being pressed yet
 let rightPressed = false;
 let leftPressed = false;
@@ -55,15 +58,16 @@ function keyUpHandler(e){
 // create our character
 function drawChar(){ 
     ctx.beginPath();
-    ctx.rect(charX, charY, charHeight, charWidth);
-    ctx.fillStyle = '#88D7FF';
-    ctx.fill();
+    ctx.drawImage(img, char.X,char.Y, char.Width,char.Height);
+    //ctx.rect(char.X, char.Y, char.Height, char.Width);
+    //ctx.fillStyle = '#88D7FF';
+    //ctx.fill();
     ctx.closePath();
 
 }
 
 // create our character
-function drawEnemy(){ 
+function drawAllEnemy(){ 
     for (let i = 0; i < eneimies.length; i++) {
         let enemy = eneimies[i];
           ctx.beginPath();
@@ -72,22 +76,31 @@ function drawEnemy(){
         ctx.fill();
         ctx.closePath();
     }
-  
-
 }
+//delclare function
+// iterate over enemys
+//log their borders (top right bottom left)
+function battle(){
+ for (let i = 0; i < eneimies.length; i++) {
+    let enemy = eneimies[i];
 
+    let enemyLeft = enemy['X'] 
+    let enemyBottom =  enemy['Y'] + enemy["Height"]
+    let enemyRight = enemy['X'] + enemy["Width"]
+    let enemyTop = enemy['Y']
 
-// create our character
-function drawEnemy1(){ 
-    ctx.beginPath();
-    ctx.rect(enemy2.X, enemy2.Y, enemy2.Height, enemy2.Width);
-    ctx.fillStyle = 'black';
-    ctx.fill();
-    ctx.closePath();
+    let charRight = char.X + char.Width;
+    let charLeft = char.X;
+    let charBottom = char.Y + char.Height;
+    let charTop = char.Y;
+    
+    if((charRight === enemyLeft && charBottom === enemyBottom)||(charLeft === enemyRight && charBottom === enemyBottom) ||(charTop === enemyBottom && charLeft === enemyLeft )||( charBottom === enemyTop && charLeft === enemyLeft )){
+        console.log('contact')
+    }; 
 
-}
+    //check if our char right === left, char left === right, char top === bottom, charbottom === top
 
-function thing(){
+ } 
 
 }
 
@@ -96,24 +109,24 @@ function drawAll(){
      // Since stuff on the cavas is changing, we need to clear the canvus and re-draw the canvas every frame
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     // re-draw our character & sprites
-    thing();
+    battle();
     drawChar();
-    drawEnemy();
-    drawEnemy1();
+    drawAllEnemy();
     // check for impact
      // if we press an arrow key and the char is within the canvas dimensions, move apropriately
-    if(rightPressed){
-        charX += 10;
-    } else if (leftPressed){
-        charX -= 10;
-    } else if(upPressed){
-        charY -= 10;
-    } else if (downPressed){
-        charY += 10;
+    if(rightPressed && (char.X < canvas.width - char.Width)){
+        char.X += 10;
+    } else if (leftPressed && (char.X > 0)){
+        char.X -= 10;
+    } else if(upPressed && (char.Y > 0)){
+        char.Y -= 10;
+    } else if (downPressed && (char.Y < canvas.height - char.Height)){
+        char.Y += 10;
     } 
 }
-
-
+  
 // calling a JavaScript library function which recalls another function every number of ms
 setInterval(drawAll, 30);
 console.log(ctx);
+
+
