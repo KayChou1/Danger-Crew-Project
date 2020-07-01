@@ -1,11 +1,11 @@
 // get access to the canvas, specfically the "context"
-//import * as  url from "./Assets/8BitKirby"
+//import * as  url from "./Assets/8BitKirby"ls
+
 let canvas = document.getElementById('myCanvas');
 let ctx = canvas.getContext("2d");
-let img = document.getElementById("Kirby");
+let img = new Image();
+img.src = "./Assets/8BitKirby.png"
  
-
-
 // define a enemy char
 let enemy1 = {name:"enemy1",Height: 30,Width: 30,X: 770,Y:  370,}
 let enemy2 = {name:"enemy2",Height: 30,Width: 30,X: 0,Y:  0,}
@@ -15,9 +15,7 @@ let enemy4 = {name:"enemy4",Height: 30,Width: 30,X: 770,Y:  0,}
 let eneimies = [enemy1, enemy2, enemy3, enemy4];
 
 // define a char
-
-let char = {name:"char",Height: 30, Width: 30, X: canvas.width/2 , Y: canvas.height/2 }
-
+let char = {name:"char",Height: 30, Width: 30, X: canvas.width/2 , Y: canvas.height/2, moveRight: true, moveLeft: true, moveUp: true, moveDown: true};
 
 // declare that buttons ARENT being pressed yet
 let rightPressed = false;
@@ -83,9 +81,6 @@ function drawAllEnemy(){
 }
 
 
-
-
-
 //delclare function
 // iterate over enemys
 //log their borders (top right bottom left)
@@ -102,20 +97,45 @@ function battle(){
     let charLeft = char.X;
     let charBottom = char.Y + char.Height;
     let charTop = char.Y;
-    
 
-
-
+   
     
     if(charRight === enemyLeft && charBottom === enemyBottom){
+        char.moveRight = false;
             console.log('contact')
     }  else if (charLeft === enemyRight && charBottom === enemyBottom){
+        char.moveLeft = false;
             console.log('contact')
     }   else if(charTop === enemyBottom && charLeft === enemyLeft ){
+        char.moveUp = false;
             console.log('contact')
     }    else if ( charBottom === enemyTop && charLeft === enemyLeft ){
+        char.moveDown = false;
             console.log('contact')
     }; 
+
+
+
+
+    // if(charRight === enemyLeft && charBottom === enemyBottom){
+    //     char.moveRight = false;
+    //         console.log('contact')
+    // }  else if (charLeft === enemyRight && charBottom === enemyBottom){
+    //     char.moveLeft = false;
+    //         console.log('contact')
+    // }   else if(charTop === enemyBottom && charLeft === enemyLeft ){
+    //     char.moveUp = false;
+    //         console.log('contact')
+    // }    else if ( charBottom === enemyTop && charLeft === enemyLeft ){
+    //     char.moveDown = false;
+    //         console.log('contact')
+    // }; 
+
+
+
+
+
+
 
     //check if our char right === left, char left === right, char top === bottom, charbottom === top
 
@@ -124,15 +144,20 @@ function battle(){
 }
 
 function movement(){
-    if(rightPressed && (char.X < canvas.width - char.Width)){
+  
+    if(char.moveRight === true && ( rightPressed && (char.X < canvas.width - char.Width))){
         char.X += 10;
-    } else if (leftPressed && (char.X > 0)){
+    } else if (char.moveLeft === true && (leftPressed && (char.X > 0))){
         char.X -= 10;
-    } else if(upPressed && (char.Y > 0)){
+    } else if(char.moveUp === true && (upPressed && (char.Y > 0))){
         char.Y -= 10;
-    } else if (downPressed && (char.Y < canvas.height - char.Height)){
+    } else if (char.moveDown === true && (downPressed && (char.Y < canvas.height - char.Height))){
         char.Y += 10;
     } 
+    char.moveRight = true;
+    char.moveLeft = true;
+    char.moveUp = true;
+    char.moveDown = true;
 }
 
 
