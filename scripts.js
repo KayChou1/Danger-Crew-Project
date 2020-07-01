@@ -114,6 +114,11 @@ function battle(){
             console.log('contact')
     }; 
 
+    char.Y == enemy.Y - enemy.height &&
+    char.X + char.width >= enemy.X &&
+    char.X <= enemy.width + enemy.X
+
+
 
 
 
