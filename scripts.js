@@ -3,6 +3,7 @@
 let canvas = document.getElementById('myCanvas');
 let ctx = canvas.getContext("2d");
 let img = document.getElementById("Kirby");
+ 
 
 
 // define a enemy char
@@ -70,13 +71,21 @@ function drawChar(){
 function drawAllEnemy(){ 
     for (let i = 0; i < eneimies.length; i++) {
         let enemy = eneimies[i];
-          ctx.beginPath();
-        ctx.rect(enemy['X'], enemy['Y'], enemy['Height'], enemy['Width']);
-        ctx.fillStyle = 'black';
-        ctx.fill();
+        enemy.img = new Image();
+        enemy.img.src = "./Assets/mushroom.png";
+         ctx.beginPath();
+        //ctx.rect(enemy['X'], enemy['Y'], enemy['Height'], enemy['Width']);
+        ctx.drawImage(enemy.img, enemy['X'], enemy['Y'], enemy['Height'], enemy['Width']);
+        //ctx.fillStyle = 'black';
+        //ctx.fill();
         ctx.closePath();
     }
 }
+
+
+
+
+
 //delclare function
 // iterate over enemys
 //log their borders (top right bottom left)
@@ -94,8 +103,18 @@ function battle(){
     let charBottom = char.Y + char.Height;
     let charTop = char.Y;
     
-    if((charRight === enemyLeft && charBottom === enemyBottom)||(charLeft === enemyRight && charBottom === enemyBottom) ||(charTop === enemyBottom && charLeft === enemyLeft )||( charBottom === enemyTop && charLeft === enemyLeft )){
-        console.log('contact')
+
+
+
+    
+    if(charRight === enemyLeft && charBottom === enemyBottom){
+            console.log('contact')
+    }  else if (charLeft === enemyRight && charBottom === enemyBottom){
+            console.log('contact')
+    }   else if(charTop === enemyBottom && charLeft === enemyLeft ){
+            console.log('contact')
+    }    else if ( charBottom === enemyTop && charLeft === enemyLeft ){
+            console.log('contact')
     }; 
 
     //check if our char right === left, char left === right, char top === bottom, charbottom === top
@@ -104,16 +123,7 @@ function battle(){
 
 }
 
-// create a function which will run every frame of the game, this is where we will call other functions 
-function drawAll(){
-     // Since stuff on the cavas is changing, we need to clear the canvus and re-draw the canvas every frame
-    ctx.clearRect(0, 0, canvas.width, canvas.height)
-    // re-draw our character & sprites
-    battle();
-    drawChar();
-    drawAllEnemy();
-    // check for impact
-     // if we press an arrow key and the char is within the canvas dimensions, move apropriately
+function movement(){
     if(rightPressed && (char.X < canvas.width - char.Width)){
         char.X += 10;
     } else if (leftPressed && (char.X > 0)){
@@ -123,6 +133,23 @@ function drawAll(){
     } else if (downPressed && (char.Y < canvas.height - char.Height)){
         char.Y += 10;
     } 
+}
+
+
+
+
+// create a function which will run every frame of the game, this is where we will call other functions 
+function drawAll(){
+     // Since stuff on the cavas is changing, we need to clear the canvus and re-draw the canvas every frame
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+    // re-draw our character & sprites
+    battle();
+    drawChar();
+    drawAllEnemy();
+    movement();
+    // check for impact
+     // if we press an arrow key and the char is within the canvas dimensions, move apropriately
+   
 }
   
 // calling a JavaScript library function which recalls another function every number of ms
