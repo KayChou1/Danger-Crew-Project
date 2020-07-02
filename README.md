@@ -19,7 +19,7 @@
             * [] Press Space to interact with enemies
     
     * [✔] Enemies 
-        * [] Character cannot walk over enemies 
+        * [✔] Character cannot walk over enemies 
         * [✔] Respond to player character when enemies and player touch 
 
 * [] Create battle scene
