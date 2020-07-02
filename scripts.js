@@ -6,6 +6,7 @@ let ctx = canvas.getContext("2d");
 let img = new Image();
 img.src = "./Assets/8BitKirby.png"
 let fight = false;
+let timeoutID 
 
 
  
@@ -107,28 +108,28 @@ function battle(){
          if(fight === false){
             fight = true;
             rps();
-            reset();
+        
         }
     }  else if (charLeft === enemyRight && charBottom === enemyBottom){
         char.moveLeft = false;
         if(fight === false){
             fight = true;
             rps();
-            reset();
+    
          }
     }   else if(charTop === enemyBottom && charLeft === enemyLeft ){
         char.moveUp = false;
         if(fight === false){
             fight = true;
             rps();
-            reset();
+            
         }
     }    else if ( charBottom === enemyTop && charLeft === enemyLeft ){
         char.moveDown = false;
         if(fight === false){
             fight = true;
             rps();
-            reset();
+            
          }
     }; 
 
@@ -161,7 +162,7 @@ function movement(){
 
 function reset(){
     //pause for 3 seconds before executing next line
-   location.reload();
+    timeoutID = window.setTimeout(location.reload(), 2*1000);
     return false;
 }
 
@@ -169,7 +170,7 @@ function reset(){
 
 function rps(){
     alert("BATTLE!")
-    let choice1 = prompt("Rock, paper or scissors?");
+    let choice1 = prompt("rock, paper or scissors?");
     let computerChoice = Math.random();
     if (computerChoice <0.34){
         choice2 = "rock";
@@ -179,41 +180,49 @@ function rps(){
     else{
         choice2 = "scissors";
     } 
-      function fight(choice1,choice2){
-        if(choice1===choice2){
-            console.log(choice1,choice2);
-            alert ("The result is a tie!") 
-        }   
-        if(choice1==="rock"){
-            if(choice2==="scissors"){
-                alert ("rock wins")
-            }
-            else{
-                let char = {name:"char",Height: 30, Width: 30, X: canvas.width/2 , Y: canvas.height/2, moveRight: true, moveLeft: true, moveUp: true, moveDown: true};           
-            }
-        }
-        if(choice1==="paper"){
-            if(choice2==="rock"){
-                alert ("paper wins")
-            }
-            else{
-                let char = {name:"char",Height: 30, Width: 30, X: canvas.width/2 , Y: canvas.height/2, moveRight: true, moveLeft: true, moveUp: true, moveDown: true};
-            }
-        }
-        if(choice1==="scissors"){
-            if(choice2==="rock"){
-                let char = {name:"char",Height: 30, Width: 30, X: canvas.width/2 , Y: canvas.height/2, moveRight: true, moveLeft: true, moveUp: true, moveDown: true};
-            }
-            else{
-                alert ("scissors wins")
-            }
-        }
-    
- 
-    };
- console.log(choice1, choice2);
+
+ random(choice1,choice2);
 }
- 
+
+function random(choice1,choice2){
+    if(choice1===choice2){
+        console.log(choice1,choice2);
+        alert ("The result is a tie!")
+        reset();
+    }   
+    if(choice1==="rock"){
+        if(choice2==="scissors"){
+            alert ("rock wins")
+            reset();
+        }
+        else{
+            alert ("You lose!")
+            reset();        
+        }
+    }
+    if(choice1==="paper"){
+        if(choice2==="rock"){
+            alert ("paper wins")
+            reset();
+        }
+        else{
+            alert ("You lose!")
+            reset();
+        }
+    }
+    if(choice1==="scissors"){
+        if(choice2==="rock"){
+            alert ("You lose!")
+            reset();
+        }
+        else{
+            alert ("scissors wins")
+            reset();
+        }
+    }
+
+
+};
 
 // create a function which will run every frame of the game, this is where we will call other functions 
 function drawAll(){
@@ -240,4 +249,3 @@ function play() {
 function pause() {
     myMusic.pause();
 }
- 
