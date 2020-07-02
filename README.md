@@ -22,20 +22,10 @@
         * [✔] Character cannot walk over enemies 
         * [✔] Respond to player character when enemies and player touch 
 
-* [] Create battle scene
-    * [] Rock, Paper, Scissors
-    * [] Exit option
+* [✔] Create battle scene
+    * [✔] Rock, Paper, Scissors
+    * [✔] Cancel option
 
-* []  Create Outdoor area
-    * [] Trees
-    * [] Water fountain
-    * [] Outdoor Ground tiling 
-    * [] Exterior Bulidings 
-        * [] Doors to the bulidings 
-     
-* []  Create interior of Bulidings
-    * [] Desks 
-    * [] Create/Choosing indoor flooring
 
 
 

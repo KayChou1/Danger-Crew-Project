@@ -188,39 +188,39 @@ function random(choice1,choice2){
     if(choice1===choice2){
         console.log(choice1,choice2);
         alert ("The result is a tie!")
-        reset();
+        
     }   
     if(choice1==="rock"){
         if(choice2==="scissors"){
             alert ("rock wins")
-            reset();
+            
         }
         else{
             alert ("You lose!")
-            reset();        
+                    
         }
     }
     if(choice1==="paper"){
         if(choice2==="rock"){
             alert ("paper wins")
-            reset();
+            
         }
         else{
             alert ("You lose!")
-            reset();
+            
         }
     }
     if(choice1==="scissors"){
         if(choice2==="rock"){
             alert ("You lose!")
-            reset();
+            
         }
         else{
             alert ("scissors wins")
-            reset();
+            
         }
     }
-
+ reset();
 
 };
 
