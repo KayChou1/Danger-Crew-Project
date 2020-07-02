@@ -1,7 +1,7 @@
-# Danger Crew Project
+# Space Kirby
 
 ### This is my front end project focusing on JavaScript logic and interactions between objects. 
-### I am creating my project based on [TheDangerCrew](https://TheDangerCrew.com/)
+### I am creating my project based on Kirby
 
 ### Checklist:
 * [✔] Create an index.html
@@ -14,9 +14,8 @@
         * [✔] Characteristics 
         * [✔] Movement 
             * [✔] Up, Right, Left, Down
-            * [] Enter bulidings
-        * [✔] Ability to interact with enemies
-            * [] Press Space to interact with enemies
+            * [✔] Ability to interact with enemies
+            
     
     * [✔] Enemies 
         * [✔] Character cannot walk over enemies 
