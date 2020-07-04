@@ -186,10 +186,12 @@ function rps(){
 
 function random(choice1,choice2){
     if(choice1===choice2){
-        console.log(choice1,choice2);
+        
         alert ("The result is a tie!")
         
-    }   
+    }  
+    reset(); 
+
     if(choice1==="rock"){
         if(choice2==="scissors"){
             alert ("rock wins")
@@ -212,11 +214,11 @@ function random(choice1,choice2){
     }
     if(choice1==="scissors"){
         if(choice2==="rock"){
-            alert ("You lose!")
+            alert ("scissors wins")
             
         }
         else{
-            alert ("scissors wins")
+            alert ("You Lose!")
             
         }
     }
