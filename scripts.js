@@ -7,9 +7,8 @@ let img = new Image();
 img.src = "./Assets/8BitKirby.png"
 let fight = false;
 let timeoutID 
+let score = 0;
 
-
- 
 // define a enemy char as objects
 let enemy1 = {name:"enemy1",Height: 30,Width: 30,X: 770,Y:  370,}
 let enemy2 = {name:"enemy2",Height: 30,Width: 30,X: 0,Y:  0,}
@@ -31,9 +30,8 @@ document.addEventListener('keydown', keyDownHandler)
 document.addEventListener('keyup', keyUpHandler)
 // define functions to handle key up & down
 
-
 function keyDownHandler(e){
-    play();
+  play();
  if (e.key == 'Right' || e.key == "ArrowRight"){
      rightPressed = true;
  } else if(e.key == "Left" || e.key == "ArrowLeft"){
@@ -45,8 +43,8 @@ function keyDownHandler(e){
 }
 }  
 
-
 function keyUpHandler(e){
+   
     if (e.key == 'Right' || e.key == "ArrowRight"){
         rightPressed = false;
     } else if(e.key == 'Left' || e.key == "ArrowLeft"){
@@ -85,19 +83,16 @@ function drawAllEnemy(){
     }
 }
 
-
 //delclare function
 // iterate over enemys
 //log their borders (top right bottom left)
 function battle(){
  for (let i = 0; i < eneimies.length; i++) {
     let enemy = eneimies[i];
-
     let enemyLeft = enemy['X'] 
     let enemyBottom =  enemy['Y'] + enemy["Height"]
     let enemyRight = enemy['X'] + enemy["Width"]
     let enemyTop = enemy['Y']
-
     let charRight = char.X + char.Width;
     let charLeft = char.X;
     let charBottom = char.Y + char.Height;
@@ -107,36 +102,34 @@ function battle(){
         char.moveRight = false;
          if(fight === false){
             fight = true;
-            rps();
+            rockpaperscissors();
         
         }
     }  else if (charLeft === enemyRight && charBottom === enemyBottom){
         char.moveLeft = false;
         if(fight === false){
             fight = true;
-            rps();
+            rockpaperscissors();
     
          }
     }   else if(charTop === enemyBottom && charLeft === enemyLeft ){
         char.moveUp = false;
         if(fight === false){
             fight = true;
-            rps();
+            rockpaperscissors();
             
         }
     }    else if ( charBottom === enemyTop && charLeft === enemyLeft ){
         char.moveDown = false;
         if(fight === false){
             fight = true;
-            rps();
+            rockpaperscissors();
             
          }
     }; 
-
     char.Y == enemy.Y - enemy.height &&
     char.X + char.width >= enemy.X &&
     char.X <= enemy.width + enemy.X
-
  } 
 
 }
@@ -152,8 +145,6 @@ function movement(){
     } else if (char.moveDown === true && (downPressed && (char.Y < canvas.height - char.Height))){
         char.Y += 10;
     } 
-
-
     char.moveRight = true;
     char.moveLeft = true;
     char.moveUp = true;
@@ -161,14 +152,18 @@ function movement(){
 }
 
 function reset(){
-    //pause for 3 seconds before executing next line
-    timeoutID = window.setTimeout(location.reload(), 2*1000);
-    return false;
+    rightPressed = false;
+    leftPressed = false;
+    upPressed = false;
+    downPressed = false;
+    document.getElementById("SCORE").innerHTML = score;
+    fight = false;
+    char = {name:"char",Height: 30, Width: 30, X: canvas.width/2 , Y: canvas.height/2, moveRight: false, moveLeft: false, moveUp: false, moveDown: false};
+    return false
+
 }
 
-
-
-function rps(){
+function rockpaperscissors(){
     alert("BATTLE!")
     let choice1 = prompt("rock, paper or scissors?");
     let computerChoice = Math.random();
@@ -189,40 +184,41 @@ function random(choice1,choice2){
         
         alert ("The result is a tie!")
         
-    }  
-    reset(); 
-
-    if(choice1==="rock"){
+    }
+  
+    else if(choice1==="rock"){
         if(choice2==="scissors"){
             alert ("rock wins")
-            
+            score++
         }
         else{
             alert ("You lose!")
+            score = 0;
+            
                     
         }
     }
-    if(choice1==="paper"){
+    else if(choice1==="paper"){
         if(choice2==="rock"){
             alert ("paper wins")
-            
+            score++
         }
         else{
             alert ("You lose!")
             
         }
     }
-    if(choice1==="scissors"){
+    else if(choice1==="scissors"){
         if(choice2==="rock"){
             alert ("scissors wins")
-            
+            score++
         }
         else{
             alert ("You Lose!")
             
         }
     }
- reset();
+    reset();
 
 };
 
@@ -234,10 +230,9 @@ function drawAll(){
     battle();
     drawChar();
     drawAllEnemy();
-    movement()
+    movement();
     // check for impact
      // if we press an arrow key and the char is within the canvas dimensions, move apropriately
-   
 }
   
 // calling a JavaScript library function which recalls another function every number of ms
