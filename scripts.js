@@ -1,5 +1,6 @@
 // get access to the canvas, specfically the "context"
 //import * as  url from "./Assets/8BitKirby"ls
+// assinging variables 
 
 let canvas = document.getElementById('myCanvas');
 let ctx = canvas.getContext("2d");
@@ -28,7 +29,9 @@ let downPressed = false;
 // add event listeners which look for key presses
 document.addEventListener('keydown', keyDownHandler)
 document.addEventListener('keyup', keyUpHandler)
-// define functions to handle key up & down
+
+
+//functions to handle key up & down
 
 function keyDownHandler(e){
   play();
@@ -133,7 +136,7 @@ function battle(){
  } 
 
 }
-
+// Declaring a function which allows our kirby to move around the screen
 function movement(){
   
     if(char.moveRight === true && ( rightPressed && (char.X < canvas.width - char.Width))){
@@ -150,7 +153,7 @@ function movement(){
     char.moveUp = true;
     char.moveDown = true;
 }
-
+ //this function resets put kirby to the middle of the screen after 3 wins!
 function reset(){
     rightPressed = false;
     leftPressed = false;
@@ -162,7 +165,7 @@ function reset(){
     return false
 
 }
-
+// This function crates a rock paper sisscors game to play
 function rockpaperscissors(){
     alert("BATTLE!")
     let choice1 = prompt("rock, paper or scissors?");
@@ -224,7 +227,7 @@ function random(choice1,choice2){
 
 // create a function which will run every frame of the game, this is where we will call other functions 
 function drawAll(){
-     // Since stuff on the cavas is changing, we need to clear the canvus and re-draw the canvas every frame
+     // Since stuff on the cavas is changing, we need to clear the canvas and re-draw the canvas every frame
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     // re-draw our character & sprites
     battle();
@@ -238,6 +241,8 @@ function drawAll(){
 // calling a JavaScript library function which recalls another function every number of ms
 setInterval(drawAll, 30);
 console.log(ctx); 
+
+
 //Handle Audio
 let myMusic= document.getElementById("music");
 function play() {
